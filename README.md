@@ -74,3 +74,18 @@
     return 0;
    }
    ```
+   
+   * function 2 플래쉬카드 기능 
+   [일정 간격마다 화면에 단어 나오고 사라지도록 하는 함수] (https://kldp.org/node/19333)
+   [**function 2 중요 함수**] (https://m.blog.naver.com/PostView.nhn?blogId=cybelion&logNo=80015332914&proxyReferer=https:%2F%2Fwww.google.com%2F)
+    ```
+    sleep(2);
+    system("clear"); //화면 지움
+    system("ls"); // 현재 디렉토리 내에 있는 파일과 디렉토리 목록 출력
+    system("find ./ -name 'word.txt' "); // word.txt 파일 찾고 ./word.txt 출력
+    sleep(2);
+    printf("sssssss\n");
+    printf("AAAAA\n);
+    return 0;
+    ```
+    
