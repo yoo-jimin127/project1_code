@@ -1,2 +1,5 @@
-# markdown 작성방법
+# README - Yoo Ji Min
+
+### 마크다운 작성 방법
+
 
