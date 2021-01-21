@@ -58,4 +58,19 @@
 -------------
 
 ### 프로젝트 1 영어사전 사용 함수 및 새롭게 알게 된 기능
-
+* 영어사전 function 2 플래쉬카드 기능 
+    [1초에 한번씩 데이터 출력 함수] (https://kkikkodev.tistory.com/66)
+    ```
+    #include <stdio.h>
+    #include <windows.h>
+    
+    #define ONE_SECOND 1000 //1000 밀리 초 = 1초
+    
+    int main (int argc, char* argv[]) {
+    while(1) {
+        printf("1초에 한번씩 출력하기\n");
+        Sleep(ONE_SECOND);
+        }
+    return 0;
+   }
+   ```
