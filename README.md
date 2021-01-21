@@ -89,3 +89,5 @@
     return 0;
     ```
     
+    * function 5 프로그램 종료 기능 및 조건에 따른 차등종료
+    (https://m.blog.naver.com/PostView.nhn?blogId=liccorob&logNo=10151840291&proxyReferer=https:%2F%2Fwww.google.com%2F)
