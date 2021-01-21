@@ -47,10 +47,15 @@
 
 ------------
 
-### vi 명령어 사용 방법 및 프로젝트1 사용 함수 및 기능 정리
+### vi 명령어 & gcc 컴파일 명령어 (주요 사용)
 
 #### vi 편집기에서 주로 사용할 명령어 학습
 * [vi 편집기 명령어] (https://iamfreeman.tistory.com/entry/vi-vim-%ED%8E%B8%EC%A7%91%EA%B8%B0-%EB%AA%85%EB%A0%B9%EC%96%B4-%EC%A0%95%EB%A6%AC-%EB%8B%A8%EC%B6%95%ED%82%A4-%EB%AA%A8%EC%9D%8C-%EB%AA%A9%EB%A1%9D)
 
+#### gcc 컴파일 명령어 학습
 * [gcc 컴파일 명령어] (https://ra2kstar.tistory.com/176)
 * [gcc 컴파일 명령어 추가 설명 링크] (https://ibabo.tistory.com/87)
+-------------
+
+### 프로젝트 1 영어사전 사용 함수 및 새롭게 알게 된 기능
+
