@@ -106,5 +106,8 @@
 * [텍스트 파일을 리눅스 환경에서 읽어오기] (http://mwultong.blogspot.com/2006/11/linux-unix-txt-view-text-file.html)
     - cat, less, vi, vim text_file.txt로 읽어올 수 있음 (일차별 단어장 읽을 때 사용하기)
 
-* <span style="color:#FFFF00"> 중요 내용 </span>
+* **중요 내용**
 [fcntl.h 헤더파일에 정의되어있는 파일 제어] (https://www.joinc.co.kr/w/Site/system_programing/File/Fcntl)
+
+* vi 편집기에서 컴파일 할 때 gcc 명령어
+
