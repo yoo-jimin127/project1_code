@@ -109,5 +109,5 @@
 * **중요 내용**
 [fcntl.h 헤더파일에 정의되어있는 파일 제어] (https://www.joinc.co.kr/w/Site/system_programing/File/Fcntl)
 
-* vi 편집기에서 컴파일 할 때 gcc 명령어
+
 
