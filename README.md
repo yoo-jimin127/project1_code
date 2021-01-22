@@ -106,4 +106,4 @@
 * [텍스트 파일을 리눅스 환경에서 읽어오기] (http://mwultong.blogspot.com/2006/11/linux-unix-txt-view-text-file.html)
     - cat, less, vi, vim text_file.txt로 읽어올 수 있음 (일차별 단어장 읽을 때 사용하기)
 
-<span style = "color:red"> 중요 내용 </span>
+<span style="color:red"> 중요 내용 </span>
