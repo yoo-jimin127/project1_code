@@ -114,7 +114,7 @@
     (https://ljs93kr.tistory.com/34)
     1. command 상태에서 v 눌러 비주얼 상태로 전환
     2. : 누른 뒤 norm i<<원하는 문자>>
-      ex) : norm i// -> 블록처리 된 부분 여러 줄 주석처리 
+    <br> ex) : norm i// -> 블록처리 된 부분 여러 줄 주석처리 
     
     
 
