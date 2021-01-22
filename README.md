@@ -93,4 +93,7 @@
     (https://m.blog.naver.com/PostView.nhn?blogId=liccorob&logNo=10151840291&proxyReferer=https:%2F%2Fwww.google.com%2F)
 -------------
 
-##2021.01.22 (금) 프로젝트 진행 내용 보고
+## 2021.01.22 (금) 프로젝트 진행 내용 보고 및 학습내용
+
+* 헤더파일 전처리 과정 중 **표준 심볼 상수 및 자료형** 에 대한 함수 사용을 위해 **<unistd.h>** 헤더파일 include
+    - [<unistd.h> 헤더파일 정의 함수 및 자료형] (http://neosrtos.com/docs/posix_api/unistd.html)
