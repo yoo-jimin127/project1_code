@@ -91,3 +91,6 @@
     
     * function 5 프로그램 종료 기능 및 조건에 따른 차등종료
     (https://m.blog.naver.com/PostView.nhn?blogId=liccorob&logNo=10151840291&proxyReferer=https:%2F%2Fwww.google.com%2F)
+-------------
+
+##2021.01.22 (금) 프로젝트 진행 내용 보고
