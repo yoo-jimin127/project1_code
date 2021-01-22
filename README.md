@@ -109,5 +109,11 @@
 * **중요 내용**
 [fcntl.h 헤더파일에 정의되어있는 파일 제어] (https://www.joinc.co.kr/w/Site/system_programing/File/Fcntl)
 
-
+* vi 편집기 환경에서 **여러줄 주석처리** 하는 방법 :
+    (https://ljs93kr.tistory.com/34)
+    1. command 상태에서 v 눌러 비주얼 상태로 전환
+    2. : 누른 뒤 norm i<<원하는 문자>>
+    ex) : norm i// -> 블록처리 된 부분 여러 줄 주석처리 
+    
+    
 
