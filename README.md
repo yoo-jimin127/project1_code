@@ -45,7 +45,7 @@
 9. 링크 첨부 : [텍스트] (URL "URL 제목") URL 제목 생략 가능
 
 
-------------
+----------
 
 ### vi 명령어 & gcc 컴파일 명령어 (주요 사용)
 
@@ -55,7 +55,7 @@
 #### gcc 컴파일 명령어 학습
 * [gcc 컴파일 명령어] (https://ra2kstar.tistory.com/176)
 * [gcc 컴파일 명령어 추가 설명 링크] (https://ibabo.tistory.com/87)
--------------
+---------
 
 ### 프로젝트 1 영어사전 사용 함수 및 새롭게 알게 된 기능
 * 영어사전 function 2 플래쉬카드 기능 
@@ -91,7 +91,7 @@
     
     * function 5 프로그램 종료 기능 및 조건에 따른 차등종료
     (https://m.blog.naver.com/PostView.nhn?blogId=liccorob&logNo=10151840291&proxyReferer=https:%2F%2Fwww.google.com%2F)
--------------
+*******
 
 ## 2021.01.22 (금) 프로젝트 진행 내용 보고 및 학습내용
 
