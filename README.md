@@ -193,7 +193,7 @@ struct mem {
 * fgets함수 사용해 텍스트 파일 읽어오기 https://jeckl.tistory.com/entry/C%EC%96%B8%EC%96%B4-21%EA%B0%95-%ED%8C%8C%EC%9D%BC-%EC%9E%85%EC%B6%9C%EB%A0%A5-%EC%9D%BD%EA%B8%B0-fopen-fgets-fseek-feof-fclose
         -> 해당 함수 없을 때 메시지 띄우고 다시 입력받으러 가는 방법 https://jhnyang.tistory.com/199
         
-* 연결리스트 노드 생성, 리스트 연결 관련 구현 참고 https://m.blog.naver.com/PostView.nhn?blogId=fldrh224728&logNo=220260764892&proxyReferer=https:%2F%2Fwww.google.com%2F
+* 연결리스트 노드 생성, 리스트 연결 관련 구현 참고 https://m.blog.naver.com/PostView.nhn?blogId=fldrh224728&logNo=220261949525&proxyReferer=https:%2F%2Fwww.google.com%2F
 
 ##### 01.23. 진행 내용
 - 영단어 사전 내용 담을 구조체 선언, 연결리스트로 노드간 연결하는 작업 진행 중
