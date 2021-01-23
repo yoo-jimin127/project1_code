@@ -180,4 +180,6 @@ struct mem {
 
 ### 연결 리스트 관련 개념
 * 연결리스트 구조체 생성 https://dojang.io/mod/page/view.php?id=645
-* 노드 연결, 추가 등 작업 https://edps5091.tistory.com/entry/%EC%97%B0%EA%B2%B0%EB%A6%AC%EC%8A%A4%ED%8A%B8%EC%82%AD%EC%A0%9C%EC%B6%94%EA%B0%80
+* 노드 추가, 연결, 삭제 작업
+    -  https://edps5091.tistory.com/entry/%EC%97%B0%EA%B2%B0%EB%A6%AC%EC%8A%A4%ED%8A%B8%EC%82%AD%EC%A0%9C%EC%B6%94%EA%B0%80
+    - https://zitto15.tistory.com/66
