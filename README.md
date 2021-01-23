@@ -130,6 +130,7 @@
 - 깃허브 리드미 작성에서 가독성이 많이 떨어지는 것 같다 가독성 있게 시간 절약하면서 헷갈리는 내용이나 배운 내용들 정리해서 모아두는 연습 하기.
 
 <br><br><br>
+--------
 ## 2021.01.23. (토) 프로젝트 진행 내용 보고 및 학습내용
 * 리눅스에서 텍스트 파일 생성 : touch 파일명
 * [텍스트 파일 생성 관련 https://aiden1004.tistory.com/entry/%EB%A6%AC%EB%88%85%EC%8A%A4-%EA%B8%B0%EC%B4%88-%EB%AA%85%EB%A0%B9%EC%96%B4-8-txt-c-%EB%A7%8C%EB%93%A4%EA%B8%B0)
@@ -176,3 +177,7 @@ struct mem {
         - 첫번째 인자 : 파일 이름 ex) 본 프로젝트에서는 "1.dic"
         - 두번째 인자 : 파일 오픈 방식 ("r" : read mode, "w" : write mode, "a" : append mode, ...)
             [fopen/fclose] (https://blockdmask.tistory.com/392)
+
+### 연결 리스트 관련 개념
+* 연결리스트 구조체 생성 https://dojang.io/mod/page/view.php?id=645
+* 노드 연결, 추가 등 작업 https://edps5091.tistory.com/entry/%EC%97%B0%EA%B2%B0%EB%A6%AC%EC%8A%A4%ED%8A%B8%EC%82%AD%EC%A0%9C%EC%B6%94%EA%B0%80
