@@ -186,3 +186,6 @@ struct mem {
     - 코딩도장 : 노드 추가 함수 만들기 https://dojang.io/mod/page/view.php?id=646
 
 * 더블링크드리스트 사용?! -> 리스트에 담아와서 알파벳 순으로 저장해서 파일 관리해야하므로 https://ndb796.tistory.com/75
+
+
+* 노드 삽입 함수 구현 참고 자료 https://ndb796.tistory.com/74?category=1004654
