@@ -183,3 +183,4 @@ struct mem {
 * 노드 추가, 연결, 삭제 작업
     -  https://edps5091.tistory.com/entry/%EC%97%B0%EA%B2%B0%EB%A6%AC%EC%8A%A4%ED%8A%B8%EC%82%AD%EC%A0%9C%EC%B6%94%EA%B0%80
     - https://zitto15.tistory.com/66
+    - 코딩도장 : 노드 추가 함수 만들기 https://dojang.io/mod/page/view.php?id=646
