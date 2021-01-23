@@ -184,3 +184,5 @@ struct mem {
     -  https://edps5091.tistory.com/entry/%EC%97%B0%EA%B2%B0%EB%A6%AC%EC%8A%A4%ED%8A%B8%EC%82%AD%EC%A0%9C%EC%B6%94%EA%B0%80
     - https://zitto15.tistory.com/66
     - 코딩도장 : 노드 추가 함수 만들기 https://dojang.io/mod/page/view.php?id=646
+
+* 더블링크드리스트 사용?! -> 리스트에 담아와서 알파벳 순으로 저장해서 파일 관리해야하므로 https://ndb796.tistory.com/75
