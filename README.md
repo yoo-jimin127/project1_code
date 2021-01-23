@@ -190,6 +190,8 @@ struct mem {
 
 * 노드 삽입 함수 구현 참고 자료 https://ndb796.tistory.com/74?category=1004654
 
+* fgets함수 사용해 텍스트 파일 읽어오기 https://jeckl.tistory.com/entry/C%EC%96%B8%EC%96%B4-21%EA%B0%95-%ED%8C%8C%EC%9D%BC-%EC%9E%85%EC%B6%9C%EB%A0%A5-%EC%9D%BD%EA%B8%B0-fopen-fgets-fseek-feof-fclose
+
 
 ##### 01.23. 진행 내용
 - 영단어 사전 내용 담을 구조체 선언, 연결리스트로 노드간 연결하는 작업 진행 중
