@@ -132,7 +132,7 @@
 <br><br><br>
 ## 2021.01.23. (토) 프로젝트 진행 내용 보고 및 학습내용
 * 리눅스에서 텍스트 파일 생성 : touch 파일명
-
+* [텍스트 파일 생성 관련 https://aiden1004.tistory.com/entry/%EB%A6%AC%EB%88%85%EC%8A%A4-%EA%B8%B0%EC%B4%88-%EB%AA%85%EB%A0%B9%EC%96%B4-8-txt-c-%EB%A7%8C%EB%93%A4%EA%B8%B0)
 * 파일 내용 출력하기 : cat 파일명, more 파일명
     - cat 명령어 : 텍스트 파일의 내용을 화면에 연속적으로 출력함. 
         파일 내용 길다면 **화면 단위로 내용 출력**하는 more 명령어 사용
@@ -140,3 +140,39 @@
             - more + 시작할 행 번호 : 출력 시작할 행번호 지정
             
 * [파일 관련 명령어 정리 내용] (https://coding-factory.tistory.com/501)
+<br><br>
+* [텍스트 파일에서 내용 읽어와 구조체에 담기 (여러 행)] (https://itng.tistory.com/145)
+    - <stdio.h>에서 파일오픈(fopen) 다 해줌
+```
+#include <stdio.h>
+
+struct mem {
+    char name[10];
+    int age;
+    char sex[3];
+    char city[10];
+    };
+    
+ int main() {
+    struct mem m[3];
+    int i;
+    FILE *f;
+    f = fopen("a.txt", "r");
+    
+    for (i = 0; i < 3; i++)
+        fscanf(f, "%s %d %s %s", &m[i].name, &m[i].age, &m[i].sex, &m[i].city);
+    fclose(f);
+    
+    for (i = 0; i < 3; i++)
+        printf("%s %d %s %s\n", m[i].name, m[i].age, m[i].sex, m[i].city);
+        
+    return 0;
+}
+```
+텍스트파일의 내용 구조체에 담고, 제대로 담겼는지 확인하는 내용 예제 코드 ↑
+
+* fopen 함수 (<stdio.h>에 fopen, fclose 모두 포함되어 있음) :
+    - fopen 함수 원형 : FILE* fopen (const char* fileName, const char* fimeMode)
+        - 첫번째 인자 : 파일 이름 ex) 본 프로젝트에서는 "1.dic"
+        - 두번째 인자 : 파일 오픈 방식 ("r" : read mode, "w" : write mode, "a" : append mode, ...)
+            [fopen/fclose] (https://blockdmask.tistory.com/392)
