@@ -239,3 +239,5 @@ struct mem {
     * moveTextFile : 텍스트파일 구조체에 옮겨서 관리하는 함수 (알파벳 순으로 정렬하며 담아오기)
     * findFile : 사용자로부터 입력받은 단어장 파일을 연결리스트에서 찾는 함수
         
+
+- 리스트의 노드를 순회하면서 찾는 파일명과 파일명이 일치한지 비교하기 위해 문자열비교함수 **strcmp()** 사용 (https://dojang.io/mod/page/view.php?id=346)
