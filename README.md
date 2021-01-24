@@ -228,10 +228,14 @@ struct mem {
         - sprintf() 이용해 int형 day_file 변수로 숫자 입력받음. fopen의 리턴 값을 설정할 것.
         -> https://dojang.io/mod/page/view.php?id=352 
         - **주의** 모드 별 파일 존재할 때 열 수 O/X 있음 -> 확인하기!
+        
+- 파일명 노드에 저장할 때, 문자열 copy & paste 함수 **strcpy()**
+    strcpy(붙여넣기 할 곳, 복사할 것)
 
-- 단어가 담긴 구조체 연결리스트로 연결하기 위해 
+- 단어가 담긴 구조체(EngWord), 파일명 저장 노드 구조체(Node), 파일 목록 연결리스트 구조체(LinkedList)로 연결하기 위해 
     * makeNode : 노드 생성 함수
     * addNode : 노드 추가 함수
     * initList : 연결리스트 초기화 함수
-    * moveText : 텍스트파일 구조체에 옮겨서 관리하는 함수 (알파벳 순으로 정렬하며 담아오기)
+    * moveTextFile : 텍스트파일 구조체에 옮겨서 관리하는 함수 (알파벳 순으로 정렬하며 담아오기)
+    * findFile : 사용자로부터 입력받은 단어장 파일을 연결리스트에서 찾는 함수
         
