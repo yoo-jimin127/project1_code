@@ -226,6 +226,7 @@ struct mem {
         ```
        -> 이 방법 아님... sprintf으로 서식 지정해서 
         - sprintf() 이용해 int형 day_file 변수로 숫자 입력받음. fopen의 리턴 값을 설정할 것.
+        -> https://dojang.io/mod/page/view.php?id=352 
         - **주의** 모드 별 파일 존재할 때 열 수 O/X 있음 -> 확인하기!
 
 - 단어가 담긴 구조체 연결리스트로 연결하기 위해 
