@@ -273,5 +273,6 @@ struct mem {
 
 #### 01.25 학습 내용
 - fgets()로 받아온 문자열을 strtok 함수를 이용해 영단어|뜻으로 분리하여 구조체에 저장하는 방법
+[strtok] (https://www.codingame.com/playgrounds/14213/how-to-play-with-strings-in-c/string-split)
 ![image](https://user-images.githubusercontent.com/66112716/105697202-9f02a700-5f47-11eb-8f16-6dcb5fe4249c.png)
 
