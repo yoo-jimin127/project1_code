@@ -271,6 +271,8 @@ struct mem {
     - 리스트 LinkedList에 저장된 파일명 1.dic, 2.dic ~ n.dic으로 정렬하는 함수
     ![image](https://user-images.githubusercontent.com/66112716/105719610-d2ecc500-5f65-11eb-8080-52c130a90132.png)
     
+    ![image](https://user-images.githubusercontent.com/66112716/105719931-3119a800-5f66-11eb-9e64-af703c73a165.png)
+    
 * project1.h에 구현 완료한 연결리스트 관련 함수 선언
 ![image](https://user-images.githubusercontent.com/66112716/105719759-03ccfa00-5f66-11eb-8b05-e15b95d1cc5d.png)
 * 1번 기능 구현
