@@ -284,4 +284,4 @@ struct mem {
     
 - ~.dic 파일명을 파일목록 리스트(dic.list)에 추가하는 함수에서 스트림 위치 지정자의 위치 조절
 [fseek()함수] (https://modoocode.com/72)
-
+![image](https://user-images.githubusercontent.com/66112716/105702211-d163d280-5f4e-11eb-978b-fd4d96662b66.png)
