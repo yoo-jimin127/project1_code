@@ -290,7 +290,7 @@ struct mem {
 <br>
 [fseek(fp, 0, SEEK_END)] (https://dojang.io/mod/page/view.php?id=616)
 파일명을 리스트에 추가할 때, 추가하는 위치(포인터)를 끝쪽으로 옮기기 위해 매크로상수 SEEK_END를 마지막 매개인자로 넣어줌 (기존에 저장되어있던 목록 마지막에 fprintf하여 파일명 추가)
-
+<br>
 [fgetc 함수] (http://blog.daum.net/julybih/99)
 모든 파일의 내용을 읽어오면서 단어장 파일에서 '\n' 문자를 만나면 count++; 해줄 때,
 반복 조건으로 
