@@ -276,3 +276,7 @@ struct mem {
 [strtok] (https://www.codingame.com/playgrounds/14213/how-to-play-with-strings-in-c/string-split)
 ![image](https://user-images.githubusercontent.com/66112716/105697202-9f02a700-5f47-11eb-8f16-6dcb5fe4249c.png)
 
+- 파일 오픈(fopen())과정 중 존재하지 않는 파일 생길 때, 버퍼에 값 쓰는 fprintf()함수
+    fprintf 프로토타입 : int fprintf(FILE *stream, const char *format, ...);
+    리턴 값 : 파일에 성공적으로 write한 문자의 개수
+    
