@@ -265,7 +265,7 @@ struct mem {
     - ~~입력받은 파일명 리스트에서 찾는 함수~~(01.24 구현 완료) : findFile()
     - 구조체 EngWord에 텍스트파일에 저장되어있는 단어들 단어|뜻으로 구별해 저장할 함수 **(01.25 진행 중)**
     - 구조체 EngWord에 저장된 단어들 알파벳 순으로 정렬하는 함수 **(01.25 진행 중)**
-    - day_file.dic의 파일명 저장된 노드들 dic.list에 저장하는 함수 **(01.25 진행 중)** : addFileToList()
+    - ~~day_file.dic의 파일명 저장된 노드들 dic.list에 저장하는 함수~~ **(01.25 구현 완료)** : addFileToList()
     - 리스트 LinkedList에 저장된 파일명 1.dic, 2.dic ~ n.dic으로 정렬하는 함수
     
 * project1.h에 구현 완료한 연결리스트 관련 함수 선언
