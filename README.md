@@ -272,6 +272,7 @@ struct mem {
     ![image](https://user-images.githubusercontent.com/66112716/105719610-d2ecc500-5f65-11eb-8080-52c130a90132.png)
     
 * project1.h에 구현 완료한 연결리스트 관련 함수 선언
+![image](https://user-images.githubusercontent.com/66112716/105719759-03ccfa00-5f66-11eb-8b05-e15b95d1cc5d.png)
 * 1번 기능 구현
 
 #### 01.25 학습 내용
