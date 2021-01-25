@@ -271,7 +271,6 @@ struct mem {
     - ~~구조체 EngWord에 저장된 단어 개수 계산하는 함수 (위의 sort함수의 반복횟수를 계산)~~ **(01.25 구현 완료)**
     - ~~day_file.dic의 파일명 저장된 노드들 dic.list에 저장하는 함수~~ **(01.25 구현 완료)** : addFileToList()
     - 리스트 LinkedList에 저장된 파일명 1.dic, 2.dic ~ n.dic으로 정렬하는 함수
-    - ~~단어장 파일에 저장되어 있는 단어의 개수를 계산하는 함수~~ **(01.25 구현 완료)**
     ![image](https://user-images.githubusercontent.com/66112716/105719610-d2ecc500-5f65-11eb-8080-52c130a90132.png)
     
     ![image](https://user-images.githubusercontent.com/66112716/105719931-3119a800-5f66-11eb-9e64-af703c73a165.png)
