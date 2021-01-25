@@ -279,4 +279,4 @@ struct mem {
 - 파일 오픈(fopen())과정 중 존재하지 않는 파일 생길 때, 버퍼에 값 쓰는 fprintf()함수
     fprintf 프로토타입 : int fprintf(FILE *stream, const char *format, ...);
     리턴 값 : 파일에 성공적으로 write한 문자의 개수
-    
+    ![image](https://user-images.githubusercontent.com/66112716/105698710-9612d500-5f49-11eb-9550-41ee8b1a743b.png)
