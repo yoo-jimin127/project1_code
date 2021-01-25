@@ -280,21 +280,21 @@ struct mem {
 * 1번 기능 구현
 
 #### 01.25 학습 내용
-- fgets()로 받아온 문자열을 strtok 함수를 이용해 영단어|뜻으로 분리하여 구조체에 저장하는 방법
+- fgets()로 받아온 문자열을 strtok 함수를 이용해 영단어|뜻으로 분리하여 구조체에 저장하는 방법 <br>
 [strtok] (https://www.codingame.com/playgrounds/14213/how-to-play-with-strings-in-c/string-split)
 ![image](https://user-images.githubusercontent.com/66112716/105697202-9f02a700-5f47-11eb-8f16-6dcb5fe4249c.png)
 
-- 파일 오픈(fopen())과정 중 존재하지 않는 파일 생길 때, 버퍼에 값 쓰는 fprintf()함수
-    fprintf 프로토타입 : int fprintf(FILE *stream, const char *format, ...);
-    리턴 값 : 파일에 성공적으로 write한 문자의 개수
+- 파일 오픈(fopen())과정 중 존재하지 않는 파일 생길 때, 버퍼에 값 쓰는 fprintf()함수 <br>
+    fprintf 프로토타입 : int fprintf(FILE *stream, const char *format, ...); <br>
+    리턴 값 : 파일에 성공적으로 write한 문자의 개수 <br>
 [sprintf()와 fprintf() 함수 차이점, 버퍼 비우는 함수 fflush()] https://jhnyang.tistory.com/314
     ![image](https://user-images.githubusercontent.com/66112716/105698710-9612d500-5f49-11eb-9550-41ee8b1a743b.png)
     
-- ~.dic 파일명을 파일목록 리스트(dic.list)에 추가하는 함수에서 스트림 위치 지정자의 위치 조절
+- ~.dic 파일명을 파일목록 리스트(dic.list)에 추가하는 함수에서 스트림 위치 지정자의 위치 조절 <br>
 [fseek()함수] (https://modoocode.com/72)
 ![image](https://user-images.githubusercontent.com/66112716/105702211-d163d280-5f4e-11eb-978b-fd4d96662b66.png)
 <br>
-[fseek(fp, 0, SEEK_END)] (https://dojang.io/mod/page/view.php?id=616)
+[fseek(fp, 0, SEEK_END)] (https://dojang.io/mod/page/view.php?id=616) <br>
 파일명을 리스트에 추가할 때, 추가하는 위치(포인터)를 끝쪽으로 옮기기 위해 매크로상수 SEEK_END를 마지막 매개인자로 넣어줌 (기존에 저장되어있던 목록 마지막에 fprintf하여 파일명 추가)
 <br>
 [fgetc 함수] (http://blog.daum.net/julybih/99)
