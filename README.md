@@ -333,3 +333,27 @@ fclose(fp);
 ----
 ### 2021.01.26 (화) 프로젝트 진행 내용 보고 및 학습내용
 * 특정 delim으로 문자열 분리하는 함수 작성 방법 예제 참고 (https://jhnyang.tistory.com/205)
+    * **영단어를 token으로 가져오고, 뜻을 가져오기 위해 다음 token get** (https://m.blog.naver.com/PostView.nhn?blogId=ambidext&logNo=221140875728&proxyReferer=https:%2F%2Fwww.google.com%2F)
+    ```char string[] = "A string\tof ,,tokens\nand some  more tokens";
+char seps[] = " ,\t\n";
+char *token;
+ 
+int main(void)
+{ 
+        printf("Tokens:\n");
+ 
+        // Establish string and get the first token: 
+        token = strtok(string, seps);                                                             
+        while (token != NULL)
+        {
+               // While there are tokens in "string" 
+               printf(" %s\n", token);
+ 
+               // Get next token:  
+               token = strtok(NULL, seps); 
+        }
+}```
+
+
+    
+    
