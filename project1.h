@@ -14,8 +14,6 @@ typedef struct engWord {
 	char word[16]; //영단어(max 15)
 	char meaning[3][31]; //영단어에 대응되는 한글 뜻 (최대 3개의 뜻, 한글 뜻 max 30자)
 	int meaningCnt; //영단어에 대응되는 한글 뜻의 count
-	int wordCnt; //파일에 저장되는 영단어 개수 count
-	struct engWord *next;
 }EngWord;
 
 //파일 이름 저장해 연결 위한 노드 구조체

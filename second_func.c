@@ -41,7 +41,7 @@ void flash_card(LinkedList *linkedList) {
 	chooseFile = findFile(linkedList, day_file); //사용자가 입력한 파일명 가진 노드 찾아 chooseFile에 저장
 
 	engWordCnt = calcWordCount(chooseFile -> fileName); //chooseFile의 단어 개수 저장
-	engWord = (EngWord *)malloc(sizeof(engWordCnt)); //단어 개수만큼 동적 메모리 할당
+	engWord = (EngWord *)malloc(sizeof(EngWord)*engWordCnt); //단어 개수만큼 동적 메모리 할당
 
 	fptr = fopen(chooseFile -> fileName, "r"); //읽기 모드로 fileName 이름의 파일 오픈, 파일포인터에 저장
 
@@ -52,9 +52,8 @@ void flash_card(LinkedList *linkedList) {
 	}
 
 	for (quizCnt = 0; quizCnt < engWordCnt; quizCnt++) {
-		for (int i = 0; i < 300; i++) {
-			wordArr[i] = ""; //단어 저장 배열 모두 0으로 초기화
-		}
+		memset(wordArr, 0, 300);//단어 저장 배열 모두 0으로 초기화
+		
 
 		fgets(wordArr, sizeof(wordArr), fptr); //파일 포인터에 wordArr 만큼의 문자열 읽어들임
 		splitWordByToken(&engWord[quizCnt], wordArr); //wordArr 배열을 구조체에 토큰으로 넣는 작업

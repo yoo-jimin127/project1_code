@@ -1,21 +1,5 @@
 #include "project1.h"
 
-////영단어와 뜻 저장 구조체 선언
-//typedef struct engWord {
-//	char word[16]; //영단어(max 15)
-//	char meaning[3][31]; //영단어에 대응되는 한글 뜻 (최대 3개의 뜻, 한글 뜻 max 30자)
-//	int meaningCnt = 0; //영단어에 대응되는 한글 뜻의 count
-//	int wordCnt = 0; //파일에 저장되는 영단어 개수 count
-//	struct engWord *next; // https://ndb796.tistory.com/74?category=1004654
-//}EngWord;
-
-////파일에 담긴 단어들을 저장할 노드 구조체
-//typedef struct node {
-//	struct node *next; //다음 단어 저장 포인터
-//	struct node *prev; //이전 단어 저장 포인터
-//	char fileName[100]; //파일 이름 저장할 멤버변수 (1.dic ~ n.dic 문자열)  
-//}Node;
-
 
 Node *makeNode (char *fileName); // 노드 생성 함수 
 void addNode (LinkedList *linkedList, Node *node); //파일 목록에 파일 추가하는 함
@@ -102,6 +86,7 @@ void addNode (LinkedList *linkedList, Node *node) {
 
 }
 
+
 //리스트 초기화 함
 void initList (LinkedList *linkedList) {
 	FILE *fptr;
@@ -147,6 +132,7 @@ Node *findFile (LinkedList *linkedList, int day_file) {
 	return NULL; //찾는 파일명과 일치하는 파일명 노드에 없으면 NULL
 }
 
+
 // 단어장 파일에 저장되어 있는 단어의 개수를 계산하는 함수
 int calcWordCount (char *fileName) {
 	// 파일 끝까지 읽어서 \n 만나면 단어의 개수 ++;
@@ -176,6 +162,7 @@ void addFileToList (Node *node) {
 	
 	fclose(fptr); //dic.list 파일 닫기
 }
+
 
 // 구조체 EngWord에 텍스트파일에 저장되어있는 문장 word|meaning으로 구별해 저장하는 함수
 void splitWordByToken (EngWord *engWord, char *wordArr) {
@@ -208,3 +195,22 @@ void splitWordByToken (EngWord *engWord, char *wordArr) {
 	engWord -> meaningCnt = cnt; //영단어 구조체에 읽어들임을 완료한 뜻의 개수 저장 
 	return 0;
 }
+
+
+// EngWord 구조체에 저장된 멤버 word를 알파벳 순으로 정렬하는 함수
+void engWordSort(EngWord *engWord, int engWordCnt) {
+	EngWord tmp; //버블정렬 시 두 영단어의 위치교환에 사용될 임시 구조체 저장 변수
+
+	for (int i = engWordCnt-1; i > 0; i--) { // 0 ~ engWordCnt -1 까지 반복
+		for (int j = 0; j < i; j++) { //j번째와 j+1 번째의 요소가 알파벳순 아니면 교환
+			if (strcmp(engWord[j].word, engWord[j+1].word) > 0) {
+				tmp = engWord[j];
+				engWord[j] = engWord[j+1];
+				engWord[j+1] = tmp;
+			}
+		}
+	}
+
+}
+
+

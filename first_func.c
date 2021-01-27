@@ -43,7 +43,7 @@ void word_quiz(LinkedList *linkedList){
 	chooseFile = findFile(linkedList, day_file); //사용자가 입력한 파일명 가진 노드 찾아 chooseFile저장
 	
 	engWordCnt = calcWordCount(chooseFile -> fileName); //chooseFile의 단어 개수 저장
-	engWord = (EngWord *)malloc(sizeof(engWordCnt)); //단어 개수만큼 동적메모리 할당
+	engWord = (EngWord *)malloc(sizeof(EngWord)*engWordCnt); //단어 개수만큼 동적메모리 할당
 
 	fptr = fopen(chooseFile -> fileName, "r+"); //읽기 모드로 fileName이름의 파일 오픈, 파일포인터 저장
 
@@ -54,9 +54,7 @@ void word_quiz(LinkedList *linkedList){
 	}
 
 	for (quizCnt = 0; quizCnt < engWordCnt; quizCnt++) {
-		for (int i = 0; i < 300; i++) {
-			wordArr[i] = ""; //단어 저장 배열 모두 0으로 초기화
-		}
+		memset(wordArr, 0, 300); //단어 저장 배열 모두 0으로 초기화
 		fgets(wordArr, sizeof(wordArr), fptr); //파일포인터에 wordArr만큼의 문자열 읽어들임
 		splitWordByToken(&engWord[quizCnt], wordArr); //wordArr 배열을 구조체에 구분하여 넣는 작업
 		quizCnt++; //다음 단어도 구조체로
@@ -68,9 +66,8 @@ void word_quiz(LinkedList *linkedList){
 	//------출력방식대로 문제내는 작업------
 	if (output_way == 1) {
 		while(quizCnt != engWordCnt) { //파일에 저장되어있는 단어 개수만큼 반복하여 문제 출제
-			for (int i = 0; i < 31; i++) {
-				wordAns[i] = ""; //답 저장 배열 모두 0으로 초기화
-			}
+			memset(wordAns, 0, 31); //답 저장 배열 모두 0으로 초기화
+			
 
 			for (int i = 0; i < engWord[quizCnt].meaningCnt; i++) {
 
@@ -113,9 +110,8 @@ void word_quiz(LinkedList *linkedList){
 		srand(time(NULL));//여러번 실행 했을 때 같은 난수 나오지 않도록 시행마다 다르게
 
 		while(quizCnt != engWordCnt) { //파일에 저장되어있는 단어 개수만큼 반복하여 문제 출제
-			for (int i = 0; i < 31; i++) {
-				wordAns[i] = ""; //답 저장 배열 모두 0으로 초기화
-				}
+			memset(wordAns, 0, 31); //답 저장 배열 모두 0으로 초기화
+	
 			randomSet = rand() % engWordCnt; //단어개수만큼의 랜덤 세팅
 			for (int i = 0; i < engWord[randomSet].meaningCnt; i++) {
 
