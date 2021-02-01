@@ -1,0 +1,9 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = true
+[remote "origin"]
+	url = https://github.com/yoo-jimin127/project1_code.git
+	fetch = +refs/*:refs/*
+	mirror = true
+	pushurl = https://github.com/yoo-jimin127/2021_winter-project.git

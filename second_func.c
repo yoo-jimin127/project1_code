@@ -1,10 +1,3 @@
-//2번째 기능 : 플래쉬카드
-
-#include "project1.h"
-
-void choose_setting2(int *speed, int *day_file, int *output_way);
-void flash_card(LinkedList *linkedList);
-
 //기능 2. 속도, 파일명, 출력방식 입력받기
 void choose_setting2(int *speed, int *day_file, int *output_way) {
 	printf("속도(초) : ");

@@ -1,10 +1,3 @@
-// 1번 기능 : 영어 단어 맞추기
-
-#include "project1.h"
-
-void choose_setting1(&day_file, &output_way); //1번 메뉴 선택 시 파일명과 출력 방식 물어보는 기능
-void word_quiz(LinkedList *linkedList); //영어 단어 맞추기 퀴즈 내는 기능
-
 // 1번 메뉴 선택 시 파일명과 출력 방식 물어보는 기능
 void choose_setting1(int *day_file, int *output_way) {
 	printf("파일명(일차) : ");

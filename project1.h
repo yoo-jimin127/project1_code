@@ -7,7 +7,7 @@
 #include <time.h> // 랜덤함수 사용 시 중복 제거
 #include <unistd.h>  //sleep 함수(일정 시간 동안 실행 정지), read 함수(파일 읽어오기)
 // #include <fcntl.h> //파일 제어함수
-
+#include <dirent.h>
 
 //영단어와 뜻 저장 구조체 선언
 typedef struct engWord {
@@ -40,6 +40,7 @@ Node *findFile (LinkedList *linkedList, int day_file);
 int calcWordCount (char *fileName);
 void addFileToList (Node *node);
 void splitWordByToken (EngWord *engWord, char *wordArr);
+int calcFileCount();
 
 //1번 기능
 void choose_setting1(int *day_file, int *output_way);
