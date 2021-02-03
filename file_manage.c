@@ -8,10 +8,11 @@
 #include <time.h> // 랜덤함수 사용 시 중복 제거
 #include <unistd.h>  //sleep 함수(일정 시간 동안 실행 정지), read 함수(파일 읽어오기)
 #include <dirent.h>
+// #include <Windows.h> //플래시카드 기능에서 커서 깜빡임 제어
 
 //영단어와 뜻 저장 구조체 선언
 typedef struct engWord {
-	char word[16]; //영단어(max 15)
+	char word[16]; //영단어(max 15)어
 	char meaning[3][31]; //영단어에 대응되는 한글 뜻 (최대 3개의 뜻, 한글 뜻 max 30자)
 	int meaningCnt; //영단어에 대응되는 한글 뜻의 count
 }EngWord;
@@ -51,6 +52,8 @@ void choose_setting2(int *speed, int *day_file, int *output_way);
 void flash_card(LinkedList *linkedList);
 
 //3번 기능
+void hangman_game (LinkedList *linkedList);
+void drawHangman (int incorCnt);
 
 //4번 기능
 void manage_voca(LinkedList *linkedList);
@@ -59,6 +62,19 @@ void addNewWord(LinkedList *linkedList);
 void watchVoca(LinkedList *linkedList);
 void watchDicFile(LinkedList *linkedList);
 
+//****************************************************************************
+//커서 깜빡임 제어 함수
+//****************************************************************************
+
+/*
+void CursorView (bool show) {
+	HANDLE hConsole;
+	CONSOLE_CURSOR_INFO ConsoleCursor;
+	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	ConsoleCursor.bVisible = show;
+	ConsoleCursor.dwSize = 1;
+	SetConsoleCursorInfo(hConsole, &ConsoleCursor);
+} */
 
 //*******************************************************************************
 //연결리스트 관련 함수 구현부
@@ -184,7 +200,7 @@ void splitWordByToken (EngWord *engWord, char *wordArr) {
 	for (int i = 0; i < strlen(wordArr); i++) {
 		if (wordArr[i] == '\n') wordArr[i] = 0;
 	} //문자열처리를 위해 단어 저장 배열의 개행문자를 만나면 삭제
-	
+
 	token = strtok(wordArr, " "); // 공백 구분자 ex) apple 사과 에서 토큰 분리
 	strcpy(engWord -> word, token); // 분리된 토큰을 구조체의 word 멤버에 저장
 
@@ -299,7 +315,7 @@ int main (void) {
 		scanf("%d", &user);
 
 		while(getchar() != '\n'); //버퍼에 있는 개행문자 제거
-		
+
 		switch (user) {
 
 			case 1 : 
@@ -314,7 +330,7 @@ int main (void) {
 
 			case 3 : 
 				//행맨 기능
-				//			third_func(&linkedList);
+				third_func(&linkedList);
 				break;
 
 			case 4 :
@@ -340,7 +356,7 @@ void second_func (LinkedList *linkedList) {
 }
 
 void third_func (LinkedList *linkedList) {
-	//	hangman_game(linkedList);
+	hangman_game(linkedList);
 }
 
 void fourth_func (LinkedList *linkedList) {
@@ -406,20 +422,21 @@ void word_quiz(LinkedList *linkedList){
 		fgets(wordArr, sizeof(wordArr), fptr); //파일포인터에 wordArr만큼의 문자열 읽어들임
 		wordArr[strlen(wordArr) -1 ] = '\0';
 		splitWordByToken(&engWord[quizCnt], wordArr); //wordArr 배열을 구조체에 구분하여 넣는 작업
-		quizCnt++; //다음 단어도 구조체로
 	}   
 
 	/*
-	for (int i = 0; i < engWordCnt; i++ ) {
-		printf("%s %s\n", engWord[i].word, engWord[i].meaning[0]); 
-	}
-	*/
+	   for (int i = 0; i < engWordCnt; i++ ) {
+	   printf("%s %s\n", engWord[i].word, engWord[i].meaning[0]); 
+	   }
+	 */
 
 	printf(">> 영어 단어 암기 프로그램 : 영어 단어 맞추기 <<\n");
 	quizCnt = 0; // 문제 출력을 위해 다시 quizCnt 변수를 0으로 초기화
 
 	//------출력방식대로 문제내는 작업------
 	if (output_way == 1) {
+		engWordSort(engWord, engWordCnt); //단어 정렬
+		
 		while(quizCnt != engWordCnt) { //파일에 저장되어있는 단어 개수만큼 반복하여 문제 출제
 			memset(wordAns, 0, 100); //답 저장 배열 모두 0으로 초기화
 
@@ -468,13 +485,6 @@ void word_quiz(LinkedList *linkedList){
 
 			randomSet = rand() % engWordCnt; //단어개수만큼의 랜덤 세팅
 			for (int i = 0; i < engWord[randomSet].meaningCnt; i++) {
-
-				//뜻 출력 과정 중 마지막으로 저장된 뜻 출력할 때
-				if (engWord[randomSet].meaningCnt -1 == i) {
-					printf("%s ", engWord[randomSet].meaning[i]); // 뜻 출력하고
-					break; // 반복문 탈출
-				}
-
 				printf("%s ", engWord[randomSet].meaning[i]); //뜻 출력
 			}
 
@@ -483,52 +493,6 @@ void word_quiz(LinkedList *linkedList){
 			scanf("%s", wordAns); //사용자가 화면에 나와있는 뜻을 보고 영단어 입력
 			if (strcmp (wordAns, ".quit") == 0) {
 				break;//사용자로부터 입력받은 wordAns 값이 .quit인 경우 입력 종료
-			}
-
-			// 정답 & 오답 확인 과정
-			if (strcmp(engWord[quizCnt].word, wordAns) == 0) {
-				printf("correct!\n");
-				corCnt++; //정답인 경우 correct! 출력, 정답 카운트 corCnt++;
-			}
-
-			else {
-				printf("incorrect!\n");
-				incorCnt++;
-			}
-
-			quizCnt++; //퀴즈 출력 수++;
-		}
-
-		printf("당신의 점수는 %.2f 점 입니다.\n", (((double)corCnt/(double)quizCnt)) * 100.0);
-	}
-
-	// ------무작위 방식으로 문제내는 작업------
-	else if (output_way == 2) {
-
-		srand(time(NULL));//여러번 실행 했을 때 같은 난수 나오지 않도록 시행마다 다르게
-
-		while(quizCnt != engWordCnt) { //파일에 저장되어있는 단어 개수만큼 반복하여 문제 출제
-			memset(wordAns, 0, 100); //답 저장 배열 모두 0으로 초기화
-
-			randomSet = rand() % engWordCnt; //단어개수만큼의 랜덤 세팅
-
-			for (int i = 0; i < engWord[randomSet].meaningCnt; i++) {
-
-				//뜻 출력 과정 중 마지막으로 저장된 뜻 출력할 때
-				if (engWord[randomSet].meaningCnt -1 == i) {
-					printf("%s ", engWord[randomSet].meaning[i]); // 뜻 출력하고
-					break; // 반복문 탈출
-				}
-
-				printf("%s ", engWord[randomSet].meaning[i]); //뜻 출력
-			}
-
-			printf("-> ");
-
-			scanf("%s", wordAns); //사용자가 화면에 나와있는 뜻을 보고 영단어 입력
-
-			if (strcmp (wordAns, ".quit") == 0) {
-				break; //사용자로부터 입력받은 wordAns의 값이 .quit인 경우 입력 종료
 			}
 
 			// 정답 & 오답 확인 과정
@@ -611,75 +575,74 @@ void flash_card(LinkedList *linkedList) {
 	for (quizCnt = 0; quizCnt < engWordCnt; quizCnt++) {
 		memset(wordArr, 0, 300);//단어 저장 배열 모두 0으로 초기화
 
-
 		fgets(wordArr, sizeof(wordArr), fptr); //파일 포인터에 wordArr 만큼의 문자열 읽어들임
 		splitWordByToken(&engWord[quizCnt], wordArr); //wordArr 배열을 구조체에 토큰으로 넣는 작업
-		quizCnt++; //다음 단어도 구조체로
 	}
 
 	printf(">> 영어 단어 암기 프로그램 : 플래쉬카드 <<\n");
-	//printf("여기까지 실행 ok\n");	
+
 
 	//------출력 방식대로 플래쉬카드 기능 수행------
 	if (output_way == 1) { // 알파벳 순서대로 출력
 
+		quizCnt = 0; //카운트 초기화
 		engWordSort(engWord, engWordCnt); //알파벳 순서대로 정렬하는 작업
 
 		while (quizCnt != engWordCnt) { //파일에 저장되어있는 단어 개수만큼 반복하여 문제 출제
 			printf("\n\n\n");
 			//	printf("출력방식대로 플래쉬\n");
-			printf("\t\t\t%s\n", engWord[quizCnt].word); //화면의 중앙 부분에 플래쉬카드 출력
+			printf("\t\t%s\n", engWord[quizCnt].word); //화면의 중앙 부분에 플래쉬카드 출력
 			sleep(speed); //사용자가 입력한 시간만큼 지연시키는 작업
 
 			system("clear"); //화면 지우고
 
 			printf(">> 영어 단어 암기 프로그램 : 플래쉬카드 <<\n");
 			printf("\n\n\n");
-			printf("\t\t\t"); // 단어의 뜻 출력을 위해 위의 설정과 동일하게 화면의 중앙 부분에 str 출력
+			printf("\t\t"); // 단어의 뜻 출력을 위해 위의 설정과 동일하게 화면의 중앙 부분에 str 출력
 
 			for (int i = 0; i < engWord[quizCnt].meaningCnt; i++) {
-
-				//뜻 출력 과정 중에 마지막으로 저장된 뜻을 출력할 때
-				if (engWord[quizCnt].meaningCnt -1 == i) { //뜻: 최대 3개, 3-1 == (i = 2)
-					printf("%s ", engWord[quizCnt].meaning[i]); //뜻 출력하고
-					break; //for 반복문 탈출
-				}
-
 				printf("%s ", engWord[quizCnt].meaning[i]); //뜻 출력
 			}
 
+			printf("\n");
+
 			sleep(speed); //사용자가 입력한 시간만큼 출력 시간 지연
 			quizCnt++;
+			system("clear");
+
+			printf(">> 영어 단어 암기 프로그램 : 플래쉬카드 <<\n");
 		}
 	}
 
 	else if (output_way == 2) { //무작위 출력
+		quizCnt = 0; //카운트 초기화
+		
 		srand(time(NULL)); // 여러번 실행 했을 때 같은 난수 나오지 않도록 시행마다 다른 값 출력
 
 		while (quizCnt != engWordCnt) {
 			randomSet = rand() % engWordCnt; // 단어 개수 만큼의 랜덤 세팅
 
 			printf("\n\n\n");
-			printf("\t\t\t%s\n", engWord[randomSet].word); //random으로 세팅된 번호로 구조체의 영단어 가져옴
+			printf("\t\t%s\n", engWord[randomSet].word); //random으로 세팅된 번호로 구조체의 영단어 가져옴
 			sleep(speed); //사용자가 입력한 시간만큼 지연시키는 작업
 
 			system("clear"); //화면 지움
 
 			printf(">> 영어 단어 암기 프로그램 : 플래쉬카드 <<\n");
 			printf("\n\n\n");
-			printf("\t\t\t");
+			printf("\t\t");
 
 			for (int i = 0; i < engWord[randomSet].meaningCnt; i++) {
-				if (engWord[randomSet].meaningCnt - 1 == i) {
-					printf("%s ", engWord[randomSet].meaning[i]);
-					break;
-				}
-
 				printf("%s ", engWord[randomSet].meaning[i]);
 			}
 
+			printf("\n");
+
 			sleep(speed);
 			quizCnt++;
+			system("clear");
+
+			printf(">> 영어 단어 암기 프로그램 : 플래쉬카드 <<\n");
 		}
 	}
 }
@@ -687,6 +650,154 @@ void flash_card(LinkedList *linkedList) {
 //**********************************************
 // 3번 기능 : 행맨 게임
 //**********************************************
+void hangman_game (LinkedList *linkedList) {
+	int day_file;
+	int gameCnt = 0; //게임 진행 카운트 변수
+	int incorCnt = 0; //오답 횟수
+
+	Node *chooseFile;
+	EngWord *engWord; //파일의 영단어 담긴 구조체
+	EngWord quizWord; //퀴즈로 출제되는 단어
+	int randomSet; //단어장에서 몇번째 단어를 출제할지 무작위로 선택하기 위한 변수
+	char userInput; //사용자가 입력한 알파벳
+
+	char wordArr[300] ="";
+	int engWordCnt = 0; //영단어 개수 카운트
+
+	FILE *fptr;
+
+	//------------------------환경 세팅----------------------------
+	printf("파일명(일차) : ");
+	scanf("%d", &day_file);
+
+	system("clear");
+
+	chooseFile = findFile(linkedList, day_file); //파일 찾아서 chooseFile에 저장
+
+	engWordCnt = calcWordCount(chooseFile -> fileName); //파일 영단어 개수 카운트해 저장
+	engWord = (EngWord *)malloc(sizeof(EngWord) * engWordCnt); //engWordCnt만큼 구조체 동적할당
+	
+	fptr = fopen(chooseFile -> fileName, "r+"); //읽기 모드로 chooseFile 오픈
+
+	while (engWordCnt != gameCnt) {
+		memset(wordArr, 0, 300); //wordArr 초기화하고 시작
+		fgets(wordArr, sizeof(wordArr), fptr); //fptr의 문자열 받아옴
+		splitWordByToken(&engWord[gameCnt], wordArr); //gameCnt번째 engWord구조체에 순차적으로 분리 저장
+		gameCnt++;
+	}
+
+	srand(time(NULL)); //무작위로 출제값할 단어 세팅(중복 방지)
+	randomSet = rand() % engWordCnt; // 단어 개수 중 택1
+	quizWord = engWord[randomSet]; //영단어 구조체 변수에 저장
+
+	char *underBar = (char *)malloc(sizeof(char) * strlen(quizWord.word)); //quizWord의 영단어 문자수만큼 공백출력 underBar 문자열배열 동적할당
+	for (int i = 0; i < strlen(quizWord.word); i++) {
+		underBar[i] = '_';
+	}
+
+	gameCnt = 1; //게임 카운트 초기화
+
+	//--------------------------명세 UI--------------------------
+	while(1) {
+		system("clear"); //화면 정리 후
+		printf(">> 영어 단어 암기 프로그램 : 행맨 <<\n"); //제목 출력 부분
+
+		printf("(힌트) ");
+		printf("%s", quizWord.meaning[0]); //힌트 출력 부분
+		printf("\n\n\n");
+
+		printf("---------------+\n"); // - 15개
+		drawHangman(incorCnt); //오답횟수를 행맨그리는 함수에 넘겨 상황 그리기
+
+		if (incorCnt == 6) { //오답횟수 6개 되면
+			printf("게임이 종료되었습니다.\n");
+			getchar(); //개행 읽어냄
+			break;
+		}
+		
+		//underBar 배열 출력하여 현재 알파벳 맞춘 상태 출력
+		for (int i = 0; i < strlen(quizWord.word); i++) {
+			printf("%c ", underBar[i]);
+		}
+
+		printf("\n");
+
+		printf("%d 번째 시도 : ", gameCnt);
+
+		while(getchar() != '\n'); //버퍼에 있는 개행문자 제거
+		userInput = getchar(); //데이터 읽어와 userInput에 저장
+
+		//출제 단어와 userInput의 비교
+		for (int i = 0; i < strlen(quizWord.word); i++) {
+			if (quizWord.word[i] == userInput) {
+				underBar[i] = userInput;
+			}
+		}
+
+		if (strcmp(quizWord.word, underBar) == 0) {
+			printf("\n");
+			printf("\t##########################\n");
+			printf("\t### Congratulations!!! ###\n");
+			printf("\t##########################\n");
+		}
+		
+		/*
+		for (int i = 0; i < strlen(quizWord.word); i++) {
+			if (quizWord.word[i] != userInput) {
+				incorCnt++;
+			}
+		}
+		*/
+
+		gameCnt++;
+	}
+}
+
+//오답 횟수를 전달받아 행맨을 그리는 함수 (switch문으로 짤걸 그랬다..)
+void drawHangman(int incorCnt) { // - 개수 : 15개 +
+	//오답횟수 0
+	if (incorCnt == 0) {
+		printf("\n\n\n\n");
+	}
+
+	//오답횟수 1
+	else if (incorCnt == 1) {
+		printf("               O\n");
+		printf("\n\n\n");
+	}
+
+	else if (incorCnt == 2) {
+		printf("               O\n");
+		printf("               |\n");
+		printf("\n\n");
+	}
+
+	else if (incorCnt == 3) {
+		printf("               O\n");
+		printf("              /|\n"); //신체부위 3 (팔1개)
+		printf("\n\n");
+	}
+	
+	else if (incorCnt == 4) {
+		printf("               O\n");
+		printf("              /|\\\n"); //신체부위 4 (팔2개) - 역슬래쉬 출력 : 두번 누르기
+		printf("\n\n");
+	}
+	
+	else if (incorCnt == 5) {
+		printf("               O\n");
+		printf("              /|\\\n");
+		printf("              /\n"); //다리 한개
+		printf("\n");
+	}
+	
+	else if (incorCnt == 6) { //행맨 죽음
+		printf("================\n");
+		printf("=HANGMAN KILLED=\n");
+		printf("================\n");
+		printf("\n");
+	}
+}
 
 
 //**********************************************
@@ -707,7 +818,7 @@ void manage_voca (LinkedList *linkedList) {
 
 		printf("번호를 입력하세요 : ");
 		scanf("%d", &func4_user);
-		
+
 		while(getchar() != '\n'); //버퍼에 있는 개행문자 제거
 
 
@@ -747,11 +858,11 @@ void addNewFile(LinkedList *linkedList) {
 	int addWordCnt = 0; //파일 추가 시 단어 최대 20개 넘을 수 X, 카운트 변수
 
 	sprintf(dicName, "%d.dic", linkedList -> fileCnt + 1); //리스트 멤버 fileCnt의 +1의 위치에 dicName입력
-	
+
 	newNode = makeNode(dicName); //dicName 이름의 노드 생성하고
 	addNode(linkedList, newNode); //연결리스트에 노드 추가
 	addFileToList(newNode); //dic.list에 newNode 추가
-	
+
 	fptr = fopen(dicName, "w+"); // 쓰기 모드로 dicName 파일 오픈
 
 	system("clear"); //명세 상 화면 정리 후
@@ -774,7 +885,7 @@ void addNewFile(LinkedList *linkedList) {
 			break;
 		}
 
-	//	fgets(wordArr, sizeof(wordArr), fptr);
+		//	fgets(wordArr, sizeof(wordArr), fptr);
 
 		fprintf(fptr, "%s", wordArr);
 
@@ -794,15 +905,25 @@ void addNewWord (LinkedList *linkedList) {
 	char wordArr[300] =""; //단어 저장 배열
 	int addWordCnt = 0; // 단어 추가 개수 (MAX : 20)
 
-	FILE *fptr = NULL; //파일 포인터
+	FILE *fptr;//파일 포인터
 
 	printf("파일명(일차) : ");
 	scanf("%d", &day_file);
 
+	while (getchar() != '\n');
+
 	chooseFile = findFile(linkedList, day_file); //입력받은 파일 찾기
+	//printf("%s", chooseFile -> fileName);
+
 	fptr = fopen(chooseFile -> fileName, "a+"); // append+ 모드로 열기(파일 열어 끝부분에 추가하도록
 	//코멘트: w모드의 경우 fseek 함수에서 SEEK_END로 추가 위치 옮겨줘야 함
-	
+
+	if (fptr == NULL) {
+		fprintf(stderr, "파일오픈 에러\n");
+		return;
+	}
+
+
 	system("clear"); //화면 정리 후
 	printf(">> 영어 단어 암기 프로그램 : 단어장 관리 : 새 단어 추가 <<\n");
 
@@ -823,6 +944,7 @@ void addNewWord (LinkedList *linkedList) {
 		}
 
 		fprintf(fptr, "%s", wordArr);
+
 		addWordCnt++;
 	}
 }
@@ -844,9 +966,9 @@ void watchVoca (LinkedList *linkedList) {
 	chooseFile = findFile(linkedList, day_file); //day_file 이름 가진 파일 찾기
 	engWordCnt = calcWordCount(chooseFile -> fileName); //chooseFile에 저장된 단어 개수 세기
 	engWord = (EngWord *)malloc(sizeof(EngWord) * engWordCnt); // 영단어 개수만큼 단어 구조체 동적할당
-	
+
 	fptr = fopen(chooseFile -> fileName, "r+"); // 읽기 모드로 파일 오픈
-	
+
 	while (engWordCnt != showCnt) { //showCnt == engWordCnt까지 단어 읽어와 토큰 분리
 		fgets(wordArr, sizeof(wordArr), fptr); //wordArr만큼의 문자열 파일포인터에서 읽어옴
 		splitWordByToken(&engWord[showCnt], wordArr); //배열에 저장된 문자열을 토큰으로 분리해 구조체 저장
@@ -857,17 +979,15 @@ void watchVoca (LinkedList *linkedList) {
 	printf("\n\n------단어장------\n");
 
 	for (showCnt = 0; showCnt < engWordCnt; showCnt++) { //showCnt 0으로 초기화, engWordCnt까지 반복
-		printf("%s", engWord[showCnt].word); // 영단어 먼저 출력 
+		printf("%s ", engWord[showCnt].word); // 영단어 먼저 출력 
 
 		for (int i = 0; i < engWord[showCnt].meaningCnt; i++) { //영단어에 매치된 뜻 개수만큼 출력
-			if (i == engWord[showCnt].meaningCnt -1) { //i가 showCnt번째 마지막 meaning을 출력할 때
-				printf(" %s \n", engWord[showCnt].meaning[i]); //뜻출력 후 개행
-			}
-
-			printf(" %s", engWord[showCnt].meaning[i]);
+			printf("%s ", engWord[showCnt].meaning[i]);
 		}
+
+		printf("\n");
 	}
-	
+
 	printf("\n\n");
 	fclose(fptr); //파일 닫기
 }
@@ -887,15 +1007,15 @@ void watchDicFile (LinkedList *linkedList) {
 	printf("\n\n------단어 파일 목록------\n");
 
 	while ((dir = readdir(dirptr)) != NULL) {
-		
+
 		if (strcmp (dir -> d_name, ".") == 0) {
 			continue;
-			} //현재 디렉터리일 경우 순회 계속
+		} //현재 디렉터리일 경우 순회 계속
 
 		if (strcmp (dir -> d_name, "..") == 0) {
 			continue;
-			} //이전 디렉터리일 경우 순회 계속
-		
+		} //이전 디렉터리일 경우 순회 계속
+
 		for (int i = 0; i < strlen(dir -> d_name); i++) {
 			if (strncmp(dir -> d_name+i, ".dic", 4) == 0) { //strstr 함수로 대체
 				printf("%s\t", dir -> d_name);
@@ -904,7 +1024,7 @@ void watchDicFile (LinkedList *linkedList) {
 			}
 		}
 
-	//	if (printfCnt % 6 == 0) printf("\n");
+		//	if (printfCnt % 6 == 0) printf("\n");
 	}
 
 	printf("\n\n");
